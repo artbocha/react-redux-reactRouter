@@ -1,0 +1,14 @@
+{
+  "parser": "babel-eslint",
+  "rules": {
+    "indent": ["error", 2, {"SwitchCase": 1}],
+    "quotes": ["error", "single"],
+    "no-undef-init": 0
+  },
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "extends": ["airbnb/base", "plugin:react/recommended"],
+  "plugins": ["react", "import"]
+}
