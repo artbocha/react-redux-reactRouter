@@ -3,7 +3,11 @@
   "rules": {
     "indent": ["error", 2, {"SwitchCase": 1}],
     "quotes": ["error", "single"],
-    "no-undef-init": 0
+    "no-undef-init": 0,
+    "import/prefer-default-export": 0,
+    "arrow-parens": 0,
+    "function-paren-newline": 0,
+    "comma-dangle":0
   },
   "env": {
     "es6": true,

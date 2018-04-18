@@ -8,6 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -31,6 +32,9 @@ module.exports = {
         loader: 'eslint-loader',
       },
     ],
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   plugins: [
     new ExtractTextPlugin({ filename: 'style.css' }),
