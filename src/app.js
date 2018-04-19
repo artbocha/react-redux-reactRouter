@@ -7,7 +7,12 @@ const App = () => {
   const renderSwitch = () => (
     <Switch>
       {routes.map(route =>
-        <Route key={route.path} path={route.path} component={route.component}/>
+        <Route
+          key={route.path}
+          exact={route.isExact}
+          path={route.path}
+          component={route.component}
+        />
       )}
     </Switch>
   );
