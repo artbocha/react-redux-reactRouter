@@ -1,4 +1,8 @@
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
+import { logIn } from '../services/authService';
+import { AUTHORIZATION_SUCCESS, AUTHORIZATION_FAIL } from '../store/actionTypes';
 
 class Login extends React.Component {
   constructor(props) {
@@ -6,17 +10,24 @@ class Login extends React.Component {
 
     this.state = {
       error: '',
-      login: '',
+      username: '',
       password: ''
     };
 
-    this.onChangeLogin = this.onChangeLogin.bind(this);
+    this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   render() {
-    const { error, login, password } = this.state;
+    const { isAuthorized, history } = this.props;
+
+    if (isAuthorized) {
+      history.push('/');
+    }
+
+    const { error, username, password } = this.state;
+
     return (
       <div id='login'>
         <div className='error-message' hidden={!error}>
@@ -24,7 +35,7 @@ class Login extends React.Component {
         </div>
         <form id='login-form' onSubmit={this.handleSubmit}>
           <label>Login</label>
-          <input required type='text' name='username' value={login} onChange={this.onChangeLogin} />
+          <input required type='text' name='username' value={username} onChange={this.onChangeUsername} />
           <label>Password</label>
           <input required type='password' name='password' value={password} onChange={this.onChangePassword} />
           <button type="submit">Sign In</button>
@@ -33,10 +44,10 @@ class Login extends React.Component {
     );
   }
 
-  onChangeLogin(event) {
+  onChangeUsername(event) {
     const { target: { value } } = event;
 
-    this.setState({ login: value });
+    this.setState({ username: value });
   }
 
   onChangePassword(event) {
@@ -46,9 +57,39 @@ class Login extends React.Component {
   }
 
   handleSubmit(event) {
-    this.setState({ error: 'Incorrect username or password.' });
     event.preventDefault();
+
+    const { authorizationSuccess, authorizationFail } = this.props;
+    const { username, password } = this.state;
+
+    logIn(username, password).then(() => {
+      this.setState({ error: '' });
+      authorizationSuccess();
+    }).catch(err => {
+      this.setState({ error: err.message });
+      authorizationFail(err);
+    });
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => (
+  {
+    isAuthorized: state.isAuthorized
+  }
+);
+
+const mapDispatchToProps = (dispatch) => (
+  {
+    authorizationSuccess: () => dispatch({ type: AUTHORIZATION_SUCCESS }),
+    authorizationFail: () => dispatch({ type: AUTHORIZATION_FAIL })
+  }
+);
+
+Login.propTypes = {
+  isAuthorized: PropTypes.bool,
+  authorizationSuccess: PropTypes.func.isRequired,
+  authorizationFail: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
