@@ -21,7 +21,8 @@ export const routes = [
     isNavBar: true,
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: Profile,
+    isPrivate: true
   },
   {
     path: '/login',
