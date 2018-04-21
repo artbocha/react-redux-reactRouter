@@ -4,6 +4,11 @@ body {
   margin: 0;
 }
 
+h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .nav-bar {
   background-color: #24292e;
   color: rgba(255,255,255,0.75);
@@ -33,7 +38,7 @@ body {
 #ui-content {
   padding: 1%;
 
-  .header > h1
+  .news.header > h1
   {
     padding-left: 15px;
     display: inline;
@@ -49,17 +54,24 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
+input:disabled {
+  background-color: #fafbfc;
+}
+
 #login-form {
   width: 400px;
   height: 300px;
   padding: 20px;
   background-color: #bfccd0;
-
   position: absolute;
   top: 50%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%)
+}
+
+#login-form  button {
+  width: 100%;
 }
 
 button {
@@ -69,7 +81,6 @@ button {
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 100%;
 }
 
 article {
@@ -112,4 +123,32 @@ a {
 a:hover {
   text-decoration: underline;
   color: blue;
+}
+
+
+.header.profile {
+  border-bottom: 1px #858c95 solid;
+  padding-bottom: 8px;
+}
+
+.profile-info {
+  width: 33%;
+
+  label {
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  label + span {
+    margin-left: 8px;
+    font-size: 14px;
+  }
+}
+
+.group {
+  margin-top: 6px;
+}
+
+li > p {
+  margin-top: 16px;
 }

@@ -23,7 +23,7 @@ class News extends React.Component {
     });
     return (
       <div>
-        <div className='header'>
+        <div className='news header'>
           <h1>News</h1>
         </div>
         { this.state.articles.map((article, index) =>

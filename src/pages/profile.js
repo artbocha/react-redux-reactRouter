@@ -15,8 +15,16 @@ const Profile = (props) => {
 
   return (
     <div>
-      <div>Profile</div>
-      <button onClick={() => signOut()}>Sign out</button>
+      <div className='header profile'>
+        <h2>Profile</h2>
+      </div>
+      <div className='profile-info'>
+        <div className='group'>
+          <label>Username:</label>
+          <span>Admin</span>
+        </div>
+        <button onClick={() => signOut()}>Sign out</button>
+      </div>
     </div>
   );
 };
