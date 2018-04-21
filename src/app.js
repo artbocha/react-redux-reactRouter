@@ -19,10 +19,12 @@ const App = () => {
 
   return (
     <Router>
-      <div id='ui-content'>
+      <React.Fragment>
         <NavigationBar routes={routes.filter(route => route.isNavBar)}/>
-        {renderSwitch()}
-      </div>
+        <div id='ui-content'>
+          {renderSwitch()}
+        </div>
+      </React.Fragment>
     </Router>
   );
 };

@@ -1,11 +1,7 @@
 body {
   font-family: "Segoe UI",Helvetica,Arial,sans-serif;
-}
-
-#ui-content {
-  width: 100%;
-  height: 100%;
-  background-color: aliceblue
+  background-color: #dcefff;
+  margin: 0;
 }
 
 .nav-bar {
@@ -31,6 +27,16 @@ body {
 
   a:hover {
     color: rgb(243, 223, 136);
+  }
+}
+
+#ui-content {
+  padding: 1%;
+
+  .header > h1
+  {
+    padding-left: 15px;
+    display: inline;
   }
 }
 
@@ -64,4 +70,46 @@ button {
   border: none;
   cursor: pointer;
   width: 100%;
+}
+
+article {
+  display: flex;
+  border-radius: 2px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.04);
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 15px;
+
+  .img-wrap {
+    margin-right: 15px;
+    width: 200px;
+    height: 200px;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .title > a {
+    font-weight: 500;
+    font-size: 18px;
+    color: black;
+  }
+
+  .title > .author {
+    font-size: 12px;
+    line-height: 20px;
+    color: #757575;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: blue;
 }
