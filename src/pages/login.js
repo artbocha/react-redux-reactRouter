@@ -5,6 +5,13 @@ import { logIn } from '../services/authService';
 import { AUTHORIZATION_SUCCESS, AUTHORIZATION_FAIL } from '../store/actionTypes';
 
 class Login extends React.Component {
+  static propTypes = {
+    isAuthorized: PropTypes.bool,
+    authorizationSuccess: PropTypes.func.isRequired,
+    authorizationFail: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
+  };
+
   constructor(props) {
     super(props);
 
@@ -13,10 +20,6 @@ class Login extends React.Component {
       username: '',
       password: ''
     };
-
-    this.onChangeUsername = this.onChangeUsername.bind(this);
-    this.onChangePassword = this.onChangePassword.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   render() {
@@ -44,19 +47,19 @@ class Login extends React.Component {
     );
   }
 
-  onChangeUsername(event) {
+  onChangeUsername = (event) => {
     const { target: { value } } = event;
 
     this.setState({ username: value });
   }
 
-  onChangePassword(event) {
+  onChangePassword = (event) => {
     const { target: { value } } = event;
 
     this.setState({ password: value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
 
     const { authorizationSuccess, authorizationFail } = this.props;
@@ -84,12 +87,5 @@ const mapDispatchToProps = (dispatch) => (
     authorizationFail: () => dispatch({ type: AUTHORIZATION_FAIL })
   }
 );
-
-Login.propTypes = {
-  isAuthorized: PropTypes.bool,
-  authorizationSuccess: PropTypes.func.isRequired,
-  authorizationFail: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

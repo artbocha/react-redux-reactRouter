@@ -11,16 +11,12 @@ class News extends React.Component {
 
   componentDidMount() {
     const url = 'https://newsapi.org/v2/top-headlines?sources=hacker-news&apiKey=f22bcc2fb9a54185b76491b9c353d894';
-    const req = new Request(url);
-    fetch(req)
+    fetch(url)
       .then(res => res.json())
       .then(el => this.setState({ articles: el.articles }));
   }
 
   render() {
-    this.state.articles.forEach((article) => {
-      console.log(article.urlToImage);
-    });
     return (
       <div>
         <div className='news header'>
