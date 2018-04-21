@@ -1,14 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { SIGN_OUT } from '../store/actionTypes';
+
 
 const Profile = (props) => {
+  const signOut = () => {
+    props.signOut();
+  };
+
   if (!props.isAuthorized) {
     props.history.push('/login');
   }
 
   return (
-    <div>Profile</div>
+    <div>
+      <div>Profile</div>
+      <button onClick={() => signOut()}>Sign out</button>
+    </div>
   );
 };
 
@@ -18,9 +27,16 @@ const mapStateToProps = (state) => (
   }
 );
 
+const mapDispatchToProps = (dispatch) => (
+  {
+    signOut: () => dispatch({ type: SIGN_OUT })
+  }
+);
+
 Profile.propTypes = {
   isAuthorized: PropTypes.bool,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  signOut: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

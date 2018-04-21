@@ -20,7 +20,7 @@ const App = () => {
   return (
     <Router>
       <div id='ui-content'>
-        <NavigationBar routes={routes}/>
+        <NavigationBar routes={routes.filter(route => route.isNavBar)}/>
         {renderSwitch()}
       </div>
     </Router>
