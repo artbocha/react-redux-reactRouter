@@ -16,7 +16,7 @@ const Athorization = (WrappedComponent) => {
         history.push('/login');
       }
 
-      return <WrappedComponent/>;
+      return <WrappedComponent {...this.props}/>;
     }
   }
 

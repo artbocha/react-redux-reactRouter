@@ -1,14 +1,11 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { logIn } from '../services/authService';
-import { AUTHORIZATION_SUCCESS, AUTHORIZATION_FAIL } from '../store/actionTypes';
 
 class Login extends React.Component {
   static propTypes = {
     isAuthorized: PropTypes.bool,
-    authorizationSuccess: PropTypes.func.isRequired,
-    authorizationFail: PropTypes.func.isRequired,
+    logIn: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired
   };
 
@@ -61,17 +58,9 @@ class Login extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-
-    const { authorizationSuccess, authorizationFail } = this.props;
     const { username, password } = this.state;
 
-    logIn(username, password).then(() => {
-      this.setState({ error: '' });
-      authorizationSuccess();
-    }).catch(err => {
-      this.setState({ error: err.message });
-      authorizationFail(err);
-    });
+    this.props.logIn(username, password);
   }
 }
 
@@ -83,8 +72,7 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => (
   {
-    authorizationSuccess: () => dispatch({ type: AUTHORIZATION_SUCCESS }),
-    authorizationFail: () => dispatch({ type: AUTHORIZATION_FAIL })
+    logIn: (username, password) => dispatch({ type: 'LOG_IN', payload: { username, password } }),
   }
 );
 
