@@ -6,7 +6,8 @@ import { SIGN_OUT } from '../store/actionTypes';
 
 class Profile extends React.Component {
   static propTypes = {
-    signOut: PropTypes.func.isRequired
+    signOut: PropTypes.func.isRequired,
+    username: PropTypes.string.isRequired
   };
 
   render() {
@@ -18,7 +19,7 @@ class Profile extends React.Component {
         <div className='profile-info'>
           <div className='group'>
             <label>Username:</label>
-            <span>Admin</span>
+            <span>{this.props.username}</span>
           </div>
           <button onClick={this.signOut}>Sign out</button>
         </div>
@@ -31,6 +32,11 @@ class Profile extends React.Component {
   };
 }
 
+const mapStateToProps = (state) => (
+  {
+    username: state.username
+  }
+);
 
 const mapDispatchToProps = (dispatch) => (
   {
@@ -38,4 +44,4 @@ const mapDispatchToProps = (dispatch) => (
   }
 );
 
-export default connect(undefined, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
   static propTypes = {
     isAuthorized: PropTypes.bool,
-    logIn: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired
+    logIn: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -20,10 +20,10 @@ class Login extends React.Component {
   }
 
   render() {
-    const { isAuthorized, history } = this.props;
+    const { isAuthorized } = this.props;
 
     if (isAuthorized) {
-      history.push('/');
+      return <Redirect to='/' />;
     }
 
     const { error, username, password } = this.state;
