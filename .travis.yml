@@ -11,3 +11,9 @@ branches:
 
 script:
   - npm run lint
+
+deploy:
+  provider: heroku
+  app: react-redux-router
+  api_key:
+    secure: 444198ff-70c7-44a9-80b2-0adfe414753f
