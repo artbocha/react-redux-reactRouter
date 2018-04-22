@@ -1,4 +1,5 @@
 import React from 'react';
+import Article from '../components/article';
 
 class News extends React.Component {
   constructor(props) {
@@ -23,22 +24,13 @@ class News extends React.Component {
           <h1>News</h1>
         </div>
         { this.state.articles.map((article, index) =>
-          <article key={index}>
-            { article.urlToImage &&
-              <div className='img-wrap'>
-                <img align='left' src={article.urlToImage}/>
-              </div>
-            }
-            <div>
-              <div className='title'>
-                <a href={article.url}>{article.title}</a>
-                <div className='author'>
-                  <span>{article.author}</span>
-                </div>
-              </div>
-              <p>{article.description}</p>
-            </div>
-          </article>
+          <Article key={index}
+            title={article.title}
+            description={article.description}
+            url={article.url}
+            author={article.author}
+            urlToImage={article.urlToImage}
+          />
         )}
       </div>
     );
