@@ -1,0 +1,13 @@
+sudo: false
+
+language: node_js
+node_js:
+  - 6
+  - 9
+
+branches:
+  only:
+    - test_travis
+
+script:
+  - npm run lint
