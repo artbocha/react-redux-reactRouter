@@ -22,7 +22,7 @@ const Athorization = (WrappedComponent) => {
 
   const mapStateToProps = (state) => (
     {
-      isAuthorized: state.isAuthorized
+      isAuthorized: Boolean(state.username)
     }
   );
 

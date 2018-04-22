@@ -6,8 +6,8 @@ function* logInSaga({ payload }) {
     const { username, password } = payload;
     yield call(logIn, username, password);
     yield put({ type: 'AUTHORIZATION_SUCCESS', payload: username });
-  } catch (e) {
-    yield put({ type: 'AUTHORIZATION_FAIL' });
+  } catch (error) {
+    yield put({ type: 'AUTHORIZATION_FAIL', payload: error.message, error: true });
   }
 }
 
