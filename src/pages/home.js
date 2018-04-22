@@ -2,7 +2,7 @@ import React from 'react';
 
 const Home = () => (
   <React.Fragment>
-    <h3>Useful links for learning react and redix</h3>
+    <h3>Useful react and redux links</h3>
     <ul>
       <li>
         <p>
